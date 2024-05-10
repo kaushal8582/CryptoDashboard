@@ -107,7 +107,27 @@ export const theme = extendTheme({
         fontWeight:"bold",
         borderRadius:"10px"
       }
-    }
+    },
+    FormLabel:{
+      baseStyle:{
+        fontSize:"sm",
+      },
+    },
+    Input:{
+      variants:{
+        outline:{
+          field:{
+            fontSize:"sm",
+          h:"38px",
+          borderRadius:"8px",
+          // color:"red",
+          _focus:{
+            boxShadow:"0 0 0 1px #5f0009"
+          }
+          }
+        }
+      },
+    },
   }
 
 }, withDefaultColorScheme({ colorScheme: "purple" }))

@@ -3,9 +3,16 @@ import { Box, HStack, Heading, Icon, Stack, Text } from "@chakra-ui/react";
 import { RxDashboard } from "react-icons/rx";
 import { MdOutlinePayments } from "react-icons/md";
 import { BiSupport } from "react-icons/bi";
+import { Link, useLocation } from "react-router-dom";
 
 
 const Sidebar = () => {
+
+  const location = useLocation();
+  const isActiveLink = (link)=>{
+    return location.pathname===link
+  }
+
   const navLinks = [
     {
       icon: RxDashboard,
@@ -44,8 +51,9 @@ const Sidebar = () => {
 
         <Box mt={"6"} mx={"3"}>
           {navLinks.map((nav) => (
+            <Link to={nav.link} key={nav.text} >
             <HStack
-              key={nav.text}
+              bg={isActiveLink(nav.link) ? "#f3f3f7":"transparent"}
               py={"3"}
               px={"4"}
               color="#797e82"
@@ -62,14 +70,17 @@ const Sidebar = () => {
                 {nav.text}
               </Text>
             </HStack>
+            </Link>
           ))}
         </Box>
       </Box>
 
       <Box mt={"6"} mx={"3"} mb={6}>
+        <Link to={"/support"}>
         <HStack
           py={"3"}
           px={"4"}
+          bg={isActiveLink("/support") ? "#f3f3f7":"transparent"}
           color="#797e82"
           borderRadius={"10px"}
           _hover={{
@@ -84,6 +95,7 @@ const Sidebar = () => {
             Support
           </Text>
         </HStack>
+        </Link>
       </Box>
     </Stack>
   );
